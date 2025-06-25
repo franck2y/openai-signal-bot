@@ -14,29 +14,21 @@
 
   <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 space-y-4">
     <div>
-      <label for="pair" class="block text-sm font-medium">Paire OTC</label>
-      <select id="pair" class="w-full mt-1 p-2 rounded bg-gray-700 text-white">
+      <label for="pair-selector" class="block text-sm font-medium">Paire OTC</label>
+      <select id="pair-selector" class="w-full mt-1 p-2 rounded bg-gray-700 text-white">
         <option value="EUR/USD">EUR/USD</option>
         <option value="GBP/USD">GBP/USD</option>
         <option value="USD/JPY">USD/JPY</option>
       </select>
     </div>
 
-    <div>
-      <label for="timeframe" class="block text-sm font-medium">Laps de temps</label>
-      <select id="timeframe" class="w-full mt-1 p-2 rounded bg-gray-700 text-white">
-        <option value="1 minute">1 minute</option>
-        <option value="5 minutes">5 minutes</option>
-      </select>
-    </div>
-
-    <button id="analyzeBtn" class="bg-blue-500 hover:bg-blue-600 w-full py-2 px-4 rounded text-white">
+    <button id="analyser-btn" class="bg-blue-500 hover:bg-blue-600 w-full py-2 px-4 rounded text-white">
       Analyser et Afficher Signal
     </button>
 
     <div class="mt-4 p-3 rounded bg-gray-700 text-white">
       <h2 class="text-lg font-semibold mb-1">Derniers Signaux</h2>
-      <div id="signalBox" class="text-sm">Aucun signal encore...</div>
+      <div id="signal-box" class="text-sm">Aucun signal encore...</div>
     </div>
   </div>
 

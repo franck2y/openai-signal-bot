@@ -1,63 +1,45 @@
-<!DOCTYPE html><html lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Robot de trading IA - OTC 1 min</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #0d1117;
-      color: #c9d1d9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
-    }
-    h1 {
-      color: #58a6ff;
-    }
-    select, button {
-      padding: 0.5rem;
-      margin: 0.5rem;
-      font-size: 1rem;
-    }
-    #resultats {
-      margin-top: 1rem;
-      padding: 1rem;
-      background-color: #161b22;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 500px;
-    }
-  </style>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <h1>🤖 Robot de trading IA - OTC 1 min</h1><label for="pair">Paire OTC</label> <select id="pair"> <option value="EUR/USD">EUR/USD</option> <option value="GBP/USD">GBP/USD</option> <option value="USD/JPY">USD/JPY</option> </select>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen">
 
-<label for="timeframe">Laps de temps</label> <select id="timeframe"> <option value="1min">1 minute</option> <option value="5min">5 minutes</option> </select>
+  <div class="text-center mb-6">
+    <h1 class="text-3xl font-bold mb-2">🤖 Robot de trading IA - OTC 1 min</h1>
+  </div>
 
-<button onclick="analyserSignal()">Analyser et Afficher Signal</button>
+  <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 space-y-4">
+    <div>
+      <label for="pair" class="block text-sm font-medium">Paire OTC</label>
+      <select id="pair" class="w-full mt-1 p-2 rounded bg-gray-700 text-white">
+        <option value="EUR/USD">EUR/USD</option>
+        <option value="GBP/USD">GBP/USD</option>
+        <option value="USD/JPY">USD/JPY</option>
+      </select>
+    </div>
 
-  <div id="resultats">
-    <strong>Derniers Signaux</strong>
-    <p id="signaux">Aucun signal encore...</p>
-  </div>  <script>
-    async function analyserSignal() {
-      const pair = document.getElementById('pair').value;
-      const timeframe = document.getElementById('timeframe').value;
-      document.getElementById('signaux').textContent = 'Analyse en cours...';
+    <div>
+      <label for="timeframe" class="block text-sm font-medium">Laps de temps</label>
+      <select id="timeframe" class="w-full mt-1 p-2 rounded bg-gray-700 text-white">
+        <option value="1 minute">1 minute</option>
+        <option value="5 minutes">5 minutes</option>
+      </select>
+    </div>
 
-      try {
-        const res = await fetch(`/api/openai?pair=${pair}&timeframe=${timeframe}`);
-        const data = await res.json();
-        if (data?.signal) {
-          document.getElementById('signaux').textContent = `Signal pour ${pair} (${timeframe}) : ${data.signal}`;
-        } else {
-          document.getElementById('signaux').textContent = 'Aucun signal généré.';
-        }
-      } catch (error) {
-        document.getElementById('signaux').textContent = 'Erreur lors de l’analyse du signal.';
-      }
-    }
-  </script></body>
+    <button id="analyzeBtn" class="bg-blue-500 hover:bg-blue-600 w-full py-2 px-4 rounded text-white">
+      Analyser et Afficher Signal
+    </button>
+
+    <div class="mt-4 p-3 rounded bg-gray-700 text-white">
+      <h2 class="text-lg font-semibold mb-1">Derniers Signaux</h2>
+      <div id="signalBox" class="text-sm">Aucun signal encore...</div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
 </html>
